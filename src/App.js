@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="App">
       <Bill bill={bill} onBillChange={setBill} />
-      <Rating text="How did you like the service?" tip={userTip} onChange={setUserTip} />
-      <Rating text="How did your friend like the service?" tip={friendTip} onChange={setFriendTip} />
+      <Rating tip={userTip} onChange={setUserTip}>How did you like the service?</Rating>
+      <Rating tip={friendTip} onChange={setFriendTip}>How did your friend like the service?</Rating>
       <TotalBill bill={bill} userTip={userTip} friendTip={friendTip} />
       <Reset setBill={setBill} setUserTip={setUserTip} setFriendTip={setFriendTip} />
     </div>
@@ -31,7 +31,7 @@ function Bill({bill, onBillChange}) {
   )
 }
 
-function Rating({text, tip, onChange}) {
+function Rating({tip, onChange, children}) {
 
   function handleTipChange(e) {
     onChange(Number(e.target.value))
@@ -39,7 +39,7 @@ function Rating({text, tip, onChange}) {
   
   return (
     <div className="row">
-      <p>{text}</p>
+      <p>{children}</p>
       <select value={tip} onChange={(e) => handleTipChange(e)}>
         <option value={0}>Dissatisfied (0%)</option>
         <option value={0.05}>was okay (5%)</option>
